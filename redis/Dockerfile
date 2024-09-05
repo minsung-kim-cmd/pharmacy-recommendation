@@ -1,5 +1,3 @@
-FROM openjdk:11
-ARG JAR_FILE=build/libs/app.jar
-COPY ${JAR_FILE} ./app.jar
+FROM redis:6
+
 ENV TZ=Asia/Seoul
-ENTRYPOINT ["java","-jar","./app.jar"]
