@@ -14,7 +14,10 @@ spring:
     activate:
       on-profile: common
 
-
+kakao:
+  rest:
+    api:
+      key: ${KAKAO_REST_API_KEY}
 # 공통으로 설정한 부분들
 
 
@@ -34,7 +37,7 @@ spring:
     port: 6379
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: validate
 
 
 # local로 설정한 부분들
