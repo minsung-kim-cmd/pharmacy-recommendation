@@ -40,6 +40,9 @@ dependencies {
 
     implementation 'org.springframework.retry:spring-retry'
 
+    // handlebars
+    implementation 'pl.allegro.tech.boot:handlebars-spring-boot-starter:0.3.4'
+
     // spock
     testImplementation('org.spockframework:spock-core:2.1-groovy-3.0')
     testImplementation('org.spockframework:spock-spring:2.1-groovy-3.0')
@@ -53,13 +56,19 @@ dependencies {
 }
 
 // $ ./gradlew clean build -PKAKAO_REST_API_KEY={api key 값} 명령어로 전체 테스트 및 빌드하여 jar 파일 생성
+//processTestResources {
+//    boolean hasProperty = project.hasProperty("KAKAO_REST_API_KEY")
+//    System.out.println("Set kakao rest api key: $hasProperty")
+//    filesMatching('**/application.yml') {
+//        expand(project.properties)
+//    }
+//}
 processTestResources {
-    boolean hasProperty = project.hasProperty("KAKAO_REST_API_KEY")
-    System.out.println("Set kakao rest api key: $hasProperty")
     filesMatching('**/application.yml') {
-        expand(project.properties)
+        expand(KAKAO_REST_API_KEY: project.findProperty('KAKAO_REST_API_KEY') ?: System.getenv('KAKAO_REST_API_KEY'))
     }
 }
+
 
 tasks.named('test') {
     useJUnitPlatform()

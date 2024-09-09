@@ -37,7 +37,8 @@ spring:
     port: 6379
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
+    show-sql: true
 
 
 # local로 설정한 부분들
