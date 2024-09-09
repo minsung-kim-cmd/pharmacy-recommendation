@@ -18,6 +18,8 @@ kakao:
   rest:
     api:
       key: ${KAKAO_REST_API_KEY}
+
+
 # 공통으로 설정한 부분들
 
 
@@ -40,6 +42,10 @@ spring:
       ddl-auto: update
     show-sql: true
 
+pharmacy:
+  recommendation:
+    base:
+      url: http://localhost:8080/dir/
 
 # local로 설정한 부분들
 

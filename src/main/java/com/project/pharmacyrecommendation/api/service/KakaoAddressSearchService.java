@@ -38,7 +38,7 @@ public class KakaoAddressSearchService {
         URI uri = kakaoUriBuilderService.buildUriByAddressSearch(address);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.set(HttpHeaders.AUTHORIZATION,"KakaoAK 00c78d145938c47676bc707f1f9f7510");
+        headers.set(HttpHeaders.AUTHORIZATION,"KakaoAK "+kakaoRestApiKey);
         HttpEntity httpEntity = new HttpEntity(headers);
 
         // kakao api 호출 및 응답값 리턴
