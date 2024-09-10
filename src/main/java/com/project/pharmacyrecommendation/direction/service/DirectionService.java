@@ -27,8 +27,8 @@ public class DirectionService {
 
     private final PharmacySearchService pharmacySearchService;
     private final DirectionRepository directionRepository;
-    private final KakaoCategorySearchService kakaoCategorySearchService;
     private final Base62Service base62Service;
+    private final KakaoCategorySearchService kakaoCategorySearchService;
 
     @Transactional
     public List<Direction> saveAll(List<Direction> directions) {

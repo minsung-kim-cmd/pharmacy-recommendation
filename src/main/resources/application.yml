@@ -51,14 +51,29 @@ pharmacy:
 
 
 ---
+# prod로 설정한 부분들
 
 spring:
   config:
     activate:
       on-profile: prod
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://pharmacy-recommendation-database:3306/pharmacy-recommendation
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+  redis:
+    host: pharmacy-recommendation-redis
+    port: 6379
+  jpa:
+    hibernate:
+      ddl-auto: update # prod 배포시 validate
+    show-sql: true
 
-
-# prod로 설정한 부분들
+pharmacy:
+  recommendation:
+    base:
+      url: http://13.124.154.129/dir
 
 
 ---

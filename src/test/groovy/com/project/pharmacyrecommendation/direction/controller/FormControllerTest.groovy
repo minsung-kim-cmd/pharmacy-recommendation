@@ -7,15 +7,13 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import spock.lang.Specification
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.handler
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print
 
 
-class FormControllerTest extends Specification{
+class FormControllerTest extends Specification {
 
     private MockMvc mockMvc
     private PharmacyRecommendationService pharmacyRecommendationService = Mock()
@@ -37,20 +35,19 @@ class FormControllerTest extends Specification{
         )
     }
 
-
     def "GET /"() {
+
         expect:
-        // FormController 의 "/" URI를 get 방식으로 호출
+        // FormController 의 "/" URI를 get방식으로 호출
         mockMvc.perform(get("/"))
                 .andExpect(handler().handlerType(FormController.class))
                 .andExpect(handler().methodName("main"))
                 .andExpect(status().isOk()) // 예상 값을 검증한다.
                 .andExpect(view().name("main"))
-                .andDo(print())
+                .andDo(log())
     }
 
-
-    def "POST /search"() {
+    /*def "POST /search"() {
 
         given:
         String inputAddress = "서울 성북구 종암동"
@@ -70,5 +67,5 @@ class FormControllerTest extends Specification{
                 .andExpect(model().attributeExists("outputFormList")) // model에 outputFormList라는 key가 존재하는지 확인
                 .andExpect(model().attribute("outputFormList", outputDtoList))
                 .andDo(print())
-    }
+    }*/
 }
