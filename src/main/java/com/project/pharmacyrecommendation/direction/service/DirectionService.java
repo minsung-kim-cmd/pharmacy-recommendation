@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 public class DirectionService {
 
     // 최대 약국 검색 갯수
-    private static final int MAX_SEARCH_COUNT = 3;
+    private static final int MAX_SEARCH_COUNT = 5;
 
     // 반경 10km 이내 약국만 추천
     private static final double RADIUS_KM = 10.0;
@@ -28,11 +28,17 @@ public class DirectionService {
     private final PharmacySearchService pharmacySearchService;
     private final DirectionRepository directionRepository;
     private final KakaoCategorySearchService kakaoCategorySearchService;
+    private final Base62Service base62Service;
 
     @Transactional
     public List<Direction> saveAll(List<Direction> directions) {
         if(CollectionUtils.isEmpty(directions)){ return Collections.emptyList(); }
         return directionRepository.saveAll(directions);
+    }
+
+    public Direction findById(String encodedId){
+        Long decodedId = base62Service.decodeDirectionId(encodedId);
+        return directionRepository.findById(decodedId).orElse(null);
     }
 
     public List<Direction> buildDirectionList(DocumentDto documentDto) {

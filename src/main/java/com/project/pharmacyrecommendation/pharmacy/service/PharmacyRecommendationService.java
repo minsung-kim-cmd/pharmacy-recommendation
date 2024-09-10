@@ -56,6 +56,8 @@ public class PharmacyRecommendationService {
                 .directionUrl(baseUrl + base62Service.encodeDirectionId(direction.getId()))
                 .roadViewUrl(ROAD_VIEW_BASE_URL + direction.getTargetLatitude() + "," + direction.getTargetLongitude())
                 .distance(String.format("%.2f km", direction.getDistance()))
+                .latitude(direction.getTargetLatitude())
+                .longitude(direction.getTargetLongitude())
                 .build();
     }
 }
