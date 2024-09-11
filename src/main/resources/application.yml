@@ -73,7 +73,7 @@ spring:
 pharmacy:
   recommendation:
     base:
-      url: http://13.124.154.129/dir
+      url: http://13.124.154.129/dir/
 
 
 ---
